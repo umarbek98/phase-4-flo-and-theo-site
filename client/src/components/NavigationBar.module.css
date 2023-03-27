@@ -1,0 +1,9 @@
+.headerLinksContainer a{
+    font-family: var(--varela);
+    text-decoration: none;
+}
+
+.headerLinksContainer{
+    display:flex;
+    justify-content: space-between;
+}

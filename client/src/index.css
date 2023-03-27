@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+:root {
+  /* Colors */
+  --lightgray: #d9d9d9;
+  --gray: #999999;
+  --varela: "Varela Round";
+}
