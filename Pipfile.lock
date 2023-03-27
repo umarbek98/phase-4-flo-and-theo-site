@@ -1,7 +1,11 @@
 {
     "_meta": {
         "hash": {
+<<<<<<< HEAD
             "sha256": "d81880988784aec7522c47936107615118679dedd6515f438191a62ce3ab4942"
+=======
+            "sha256": "7f7606f08e0544d8d012ef4d097dabdd6df6843a28793eb6551245d4b2db4242"
+>>>>>>> f1bdb70ca878490d6900ea4386b3a95348e073a6
         },
         "pipfile-spec": 6,
         "requires": {
@@ -15,6 +19,7 @@
             }
         ]
     },
+<<<<<<< HEAD
     "default": {
         "alembic": {
             "hashes": [
@@ -317,5 +322,8 @@
             "version": "==3.15.0"
         }
     },
+=======
+    "default": {},
+>>>>>>> f1bdb70ca878490d6900ea4386b3a95348e073a6
     "develop": {}
 }
