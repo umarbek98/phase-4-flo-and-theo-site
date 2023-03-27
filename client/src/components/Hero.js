@@ -10,10 +10,8 @@ const Hero = () => {
                 <div className={styles.heroMask}>
 
                 </div>
-                
+                <CallToAction />
             </div>
-            
-            <CallToAction />
         </div>
     )
 }
