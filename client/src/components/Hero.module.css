@@ -1,0 +1,10 @@
+.heroImageContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    size: 100%;
+}
+
+.heroImageContainer img {
+    width: 50%;
+}

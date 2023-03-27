@@ -1,9 +1,15 @@
 .headerLinksContainer a{
     font-family: var(--varela);
     text-decoration: none;
+    
 }
 
 .headerLinksContainer{
     display:flex;
     justify-content: space-between;
+    position: relative;
+    max-width:760px;
+    padding: 20px 95px;
+    margin: auto auto auto auto;
+    border-width: 0px;
 }
