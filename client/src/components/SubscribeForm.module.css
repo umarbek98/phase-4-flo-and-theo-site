@@ -1,0 +1,44 @@
+.subscribeTitleContainer {
+    display:flex;
+    flex-direction: column;
+    
+}
+
+.subscribeTitleContainer span {
+    text-align: center;
+    width: 300px;
+    line-height: 20px;
+}
+
+.subscribeFieldsContainer {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.subscribeFieldsContainer input {
+    margin: 10px;
+    border: 1px solid var(--weirdgray);
+    width: 276px;
+    height: 52px;
+    font-size: 18px;
+}
+
+.subscribeSubmitBtn {
+    background-color: white;
+    box-sizing: border-box;
+    border: 1px solid black;
+    width: 200px;
+    height: 52px;
+
+}
+
+.subscribeBtnContainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+

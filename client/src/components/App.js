@@ -3,6 +3,7 @@ import '../index.css';
 import Header from './Header';
 import Hero from "./Hero";
 import MainContent from "./MainContent"
+import Footer from './Footer';
 import styles from "./App.module.css";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Header />
         <Hero />
         <MainContent />
+        <Footer />
       </div>
     </div>
   );
