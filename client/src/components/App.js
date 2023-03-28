@@ -9,6 +9,7 @@ import RegisterModal from './RegisterModal';
 import Footer from './Footer';
 import Header from './Header';
 import { Routes, Route } from "react-router-dom"
+import ProductPage from '../pages/ProductPage';
 
 
 
@@ -20,6 +21,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/shop" element={<ShopPage />} />
+            <Route path="/product" element={<ProductPage />} />
           </Routes>
           <Footer />
           <LoginModal />
