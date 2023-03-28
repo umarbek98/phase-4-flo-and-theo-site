@@ -10,6 +10,8 @@ import Footer from './Footer';
 import Header from './Header';
 import { Routes, Route } from "react-router-dom"
 import ProductPage from '../pages/ProductPage';
+import CartModal from './CartModal';
+import CheckoutModal from './CheckoutModal';
 
 
 
@@ -26,6 +28,8 @@ function App() {
           <Footer />
           <LoginModal />
           <RegisterModal />
+          <CartModal />
+          <CheckoutModal />
       </div>
     </div>
   );
