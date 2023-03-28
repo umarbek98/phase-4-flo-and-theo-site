@@ -6,10 +6,8 @@ const HomePage = () => {
 
     return (
         <div>
-            <Header />
             <Hero />
             <MainContent />
-            <Footer />
         </div>
     )
 }
