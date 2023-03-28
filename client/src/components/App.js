@@ -5,16 +5,18 @@ import styles from "./App.module.css";
 import LoginModal from './LoginModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RegisterModal from './RegisterModal';
+import IngredientsPage from './IngredientsPage';
 
 
 
 function App() {
   return (
     <div className="App">
-      <div className={styles.mainPage}>
-          <HomePage />
-          <LoginModal />
-          <RegisterModal />
+      <div>
+          {/* <HomePage />
+           <LoginModal />
+          <RegisterModal /> */}
+          <IngredientsPage />
       </div>
     </div>
   );

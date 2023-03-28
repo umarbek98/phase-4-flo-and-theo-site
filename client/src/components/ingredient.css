@@ -1,0 +1,24 @@
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top:1rem;
+}
+
+.product-image {
+  flex-basis: 15%;
+}
+
+.product-description {
+  flex-basis: 75%;
+}
+
+@media (max-width: 767px) {
+  .flex-container {
+    flex-direction: column;
+  }
+
+  .product-image, .product-description {
+    flex-basis: 100%;
+  }
+}
+
