@@ -14,6 +14,3 @@ export const LoginProvider = (props) => {
         </LoginContext.Provider>
     )
 }
-
-
-
