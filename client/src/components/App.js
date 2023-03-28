@@ -4,7 +4,6 @@ import HomePage from '../pages/HomePage';
 import styles from "./App.module.css";
 import LoginModal from './LoginModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import LoginProvider from '../contexts/LoginContext.js';
 import RegisterModal from './RegisterModal';
 
 
