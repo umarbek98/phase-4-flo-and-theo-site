@@ -1,5 +1,11 @@
 import styles from "./NavigationBar.module.css";
+import  { LoginContext }  from '../contexts/LoginContext.js';
+import { useContext, useReducer } from "react";
+
+
 const NavigationBar = () => {
+    const { setShowLogin } = useContext(LoginContext)
+
 
     return(
         <div className={styles.headerLinksContainer}>
@@ -9,7 +15,7 @@ const NavigationBar = () => {
             <a href="#">Ingredients</a>
             <a href="#">Press</a>
             <a href="#">Contact</a>
-            <a href="#">Login/Register</a>
+            <button onClick={() => setShowLogin(true)}>Login/Register</button>
         </div>
     )
 }
