@@ -13,3 +13,20 @@
     margin: auto auto auto auto;
     border-width: 0px;
 }
+
+.headerLinksContainer button{
+    background-color: #007bff;
+    float: right;
+    height: 30px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+.headerLinksContainer button:hover {
+    background-color: #0062cc;
+  }
+
