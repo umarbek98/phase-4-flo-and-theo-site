@@ -12,6 +12,8 @@ import { Routes, Route } from "react-router-dom"
 import ProductPage from '../pages/ProductPage';
 import CartModal from './CartModal';
 import CheckoutModal from './CheckoutModal';
+import IngredientsPage from '../pages/IngredientsPage';
+
 
 
 
@@ -24,6 +26,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/product" element={<ProductPage />} />
+            <Route path="/ingredients" element={<IngredientsPage />} />
           </Routes>
           <Footer />
           <LoginModal />
