@@ -199,7 +199,6 @@ def delete_order(order_id):
     return '', 204
 
 
-
 @app.route('/login', methods=['POST'])
 def login():
     email = request.json.get('email')
