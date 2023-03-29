@@ -1,0 +1,14 @@
+.searchSidebarContainer{
+    display:flex;
+    flex-direction: column;
+    width: 1000px;
+}
+
+.searchBar {
+    width: 200px;
+}
+
+.checkBoxContainer {
+
+}
+

@@ -4,7 +4,7 @@ const OrderPage = () => {
 
     return(
         <div>
-            <h4>Your Orders</h4>
+            <h3>Your Orders</h3>
             <OrderList />
         </div>
     )
