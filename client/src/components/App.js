@@ -15,6 +15,8 @@ import CheckoutModal from './CheckoutModal';
 import IngredientsPage from '../pages/IngredientsPage';
 import OrderPage from '../pages/OrderPage';
 import ContactPage from "../pages/ContactPage";
+import OrderModal from './OrderModal';
+
 
 
 

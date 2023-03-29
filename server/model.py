@@ -7,24 +7,62 @@ class Product(db.Model):
     __tablename__ = 'products'
     product_id = db.Column(db.Integer, primary_key=True)
     product_name = db.Column(db.String(255))
-    brand = db.Column(db.String(255))
+    # brand = db.Column(db.String(255))
     category = db.Column(db.String(255))
     price = db.Column(db.Float)
     description = db.Column(db.Text)
+    directions = db.Column(db.Text)
     image_url = db.Column(db.String(255))
+    ingredients = db.relationship("ProductIngredient", backref="product")
     order_items = db.relationship('OrderItem', backref='product')
  
     def to_dict(self):
+        print(self.ingredients)
         return {
             'product_id': self.product_id,
             'product_name': self.product_name,
-            'brand': self.brand,
+            # 'brand': self.brand,
             'category': self.category,
             'price': self.price,
             'description': self.description,
             'image_url': self.image_url,
+            "ingredients": [ingredient.to_dict() for ingredient in self.ingredients]
             # 'order_items': [order_item.to_dict() for order_item in self.order_items]
         }
+    
+class Ingredient(db.Model):
+    __tablename__ = "ingredients"
+    ingredient_id = db.Column(db.Integer, primary_key=True)
+    ingredient_name = db.Column(db.String)
+    ingredient_description = db.Column(db.String)
+    ingredient_image = db.Column(db.String)
+    products = db.relationship("ProductIngredient", backref="ingredient")
+
+    def to_dict(self):
+        return {
+            "ingredient_id": self.ingredient_id,
+            "ingredient_name": self.ingredient_name,
+            "ingredient_description": self.ingredient_description,
+            "ingredient_image": self.ingredient_image,
+        }
+
+class ProductIngredient(db.Model):
+    __tablename__ = "product_ingredients"
+    id = db.Column(db.Integer,primary_key=True)
+    product_id = db.Column(db.Integer, db.ForeignKey("products.product_id"))
+    ingredient_id = db.Column(db.Integer, db.ForeignKey("ingredients.ingredient_id"))
+
+    def to_dict(self):
+        ingredient = Ingredient.query.filter(Ingredient.ingredient_id == self.ingredient_id).first()
+        return {
+            "ingredient_id": self.ingredient_id,
+            "ingredient_name": ingredient.ingredient_name,
+            "ingredient_description": ingredient.ingredient_description,
+            "ingredient_image": ingredient.ingredient_image
+        }
+
+    
+        
  
 class Customer(db.Model):
     __tablename__ = 'customers'

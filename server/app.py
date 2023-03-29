@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request, make_response
 from flask_sqlalchemy import SQLAlchemy
 import bcrypt
-from module import db, Product, Customer, Order, OrderItem
+from model import db, Product, Customer, Order, OrderItem
 from flask_migrate import Migrate
 
 app = Flask(__name__)
@@ -29,10 +29,11 @@ def create_product():
     data = request.get_json()
     product = Product(
         product_name=data['product_name'],
-        brand=data['brand'],
+        # brand=data['brand'],
         category=data['category'],
         price=data['price'],
         description=data['description'],
+        directions=data["directions"],
         image_url=data['image_url']
     )
     db.session.add(product)
@@ -58,7 +59,7 @@ def update_product(product_id):
 def delete_product(product_id):
     product = Product.query.get(product_id)
     if not product:
-        return jsonify({'error': 'Product not found'}), 404
+        return make_response(jsonify({'error': 'Product not found'})), 404
     db.session.delete(product)
     db.session.commit()
     return make_response(jsonify({}), 204)

@@ -1,6 +1,7 @@
 from app import app, db
-from module import Product, Customer, Order, OrderItem
+from model import Product, Customer, Order, OrderItem, Ingredient, ProductIngredient
 from faker import Faker
+import random
 
 fake = Faker()
 
@@ -11,21 +12,49 @@ if __name__ == '__main__':
         Customer.query.delete()
         Order.query.delete()
         OrderItem.query.delete()
+        Ingredient.query.delete()
+        ProductIngredient.query.delete()
+
+        db.session.commit()
         
         # Create some products
         products = []
         for i in range(10):
             product = Product(
                 product_name=fake.word(),
-                brand=fake.company(),
                 category=fake.word(),
                 price=fake.pydecimal(left_digits=2, right_digits=2, positive=True),
                 description=fake.sentence(),
-                image_url=fake.image_url()
+                image_url=fake.image_url(),
+                directions=fake.sentence()
             )
             products.append(product)
         db.session.add_all(products)
         db.session.commit()
+
+        # Create some ingredients
+        ingredients = []
+        for i in range(10):
+            ingredient = Ingredient(
+                ingredient_name=fake.word(),
+                ingredient_description=fake.sentence(),
+                ingredient_image=fake.image_url(),
+            )
+            ingredients.append(ingredient)
+        db.session.add_all(ingredients)
+        db.session.commit()
+
+        # Add random ingredients to product
+        for product in Product.query.all():
+            number_to_add = random.randint(2,5)
+            for i in range(number_to_add):
+                random_ingredient = random.choice(Ingredient.query.all())
+                product_ingredient = ProductIngredient(
+                    product_id = product.product_id,
+                    ingredient_id = random_ingredient.ingredient_id
+                )
+                db.session.add(product_ingredient)
+                db.session.commit()
 
         # Create some customers
         customers = []
