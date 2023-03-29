@@ -50,6 +50,7 @@
   transition: all 0.2s 0.1s ease-in-out;
   color: #ffffff;
   border-radius: 5px;
+  pointer-events:none;
   /* center overlay text */
   display: flex;
   align-items: center;
