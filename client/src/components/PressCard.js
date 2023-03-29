@@ -3,7 +3,9 @@ import './PressCard.css'
 function PressCard(props) {
   return (
     <li>
-      <img src= {props.imgSrc} alt={props.imgAlt} />
+      <a href={props.imgUrl} target="_blank" rel="noopener noreferrer">
+        <img src={props.imgSrc} alt={props.imgAlt} />
+      </a>
       <div className="overlay">
         <span>{props.imgAlt}</span>
       </div>
