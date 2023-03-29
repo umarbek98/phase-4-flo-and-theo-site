@@ -7,7 +7,7 @@ function PressCard(props) {
         <img src={props.imgSrc} alt={props.imgAlt} />
       </a>
       <div className="overlay">
-        <span>{props.imgAlt}</span>
+        <span></span>
       </div>
     </li>
   );
