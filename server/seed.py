@@ -1,5 +1,5 @@
 from app import app, db
-from model import Product, Customer, Order, OrderItem, Ingredient, ProductIngredient
+from model import Product, Customer, Order, OrderProduct, Ingredient, ProductIngredient
 from faker import Faker
 import random
 

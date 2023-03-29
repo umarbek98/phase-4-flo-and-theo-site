@@ -1,7 +1,7 @@
+import { useEffect } from "react";
 import OrderCard from "./OrderCard";
 
 const OrderList = () => {
-    
     return (
         <div>
             <OrderCard />

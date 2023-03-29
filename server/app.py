@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request, make_response
 from flask_sqlalchemy import SQLAlchemy
 import bcrypt
-from model import db, Product, Customer, Order, OrderItem
+from model import db, Product, Customer, Order, OrderProduct
 from flask_migrate import Migrate
 
 app = Flask(__name__)
@@ -81,15 +81,15 @@ def get_customer(customer_id):
 def create_customer():
     data = request.get_json()
     customer = Customer(
-        first_name=data['first_name'],
-        last_name=data['last_name'],
+        first_name=data['firstName'],
+        last_name=data['lastName'],
         email=data['email'],
         password=data['password'],
-        address=data['address'],
-        city=data['city'],
-        state=data['state'],
-        zip_code=data['zip_code'],
-        phone_number=data['phone_number']
+        # address=data['address'],
+        # city=data['city'],
+        # state=data['state'],
+        # zip_code=data['zip_code'],
+        # phone_number=data['phone_number']
     )
     db.session.add(customer)
     db.session.commit()
@@ -154,7 +154,7 @@ def create_order():
         product = Product.query.get(product_id)
         if not product:
             return jsonify({'error': 'Product not found'}), 404
-    order_item = OrderItem(
+    order_item = OrderProduct(
     product_id=product_id,
     quantity=item_data['quantity'],
     price=product.price
@@ -180,7 +180,7 @@ def update_order(order_id):
         product = Product.query.get(product_id)
         if not product:
             return jsonify({'error': 'Product not found'}), 404
-    order_item = OrderItem(
+    order_item = OrderProduct(
     product_id=product_id,
     quantity=item_data['quantity'],
     price=product.price
@@ -197,6 +197,18 @@ def delete_order(order_id):
     db.session.delete(order)
     db.session.commit()
     return '', 204
+
+@app.route('/login', methods=['POST'])
+def login():
+    email = request.json.get('email')
+    password = request.json.get('password')
+
+    customer = Customer.query.filter_by(email=email).first()
+    if not customer or not customer.verify_password(password):
+        return jsonify({'message': 'Invalid email or password'}), 401
+
+    # Login successful, return customer data
+    return jsonify(customer.to_dict())
 
 if "__name__" == '__main__':
     app.run(debug=True)
