@@ -1,0 +1,20 @@
+.productListContainer{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 100px;
+    margin-left: 100px;
+    
+}
+
+@media screen and  (max-width: 767px) {
+
+    .productListContainer{
+        flex-direction: column;
+   
+    }
+
+    .productListContainer img {
+    }
+
+}

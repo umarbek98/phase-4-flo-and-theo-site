@@ -4,13 +4,22 @@ import './index.css';
 import App from './components/App';
 import { LoginProvider } from './contexts/LoginContext';
 import { RegisterProvider } from './contexts/RegisterContext';
+import { BrowserRouter } from "react-router-dom"
+import { CartProvider } from './contexts/CartContext';
+import { CheckoutProvider } from './contexts/CheckoutContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <LoginProvider>
       <RegisterProvider>
-        <App />
+        <CartProvider>
+          <CheckoutProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </CheckoutProvider>
+        </CartProvider>
       </RegisterProvider>
     </LoginProvider>
   </React.StrictMode>

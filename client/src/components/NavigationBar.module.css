@@ -1,7 +1,7 @@
 .headerLinksContainer a{
     font-family: var(--varela);
     text-decoration: none;
-    
+    cursor: pointer;
 }
 
 .headerLinksContainer{

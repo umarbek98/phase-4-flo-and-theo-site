@@ -6,3 +6,9 @@
     margin: auto auto auto auto;
     border-width: 0px;
 } */
+
+.mainPage{
+    display:flex;
+    flex-direction: column;
+    align-content: space-around;
+}
