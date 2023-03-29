@@ -1,0 +1,13 @@
+.footerLinkContainer{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    align-content: space-around;
+
+    margin-top: 50px;
+}
+
+.footerLinkContainer a {
+    text-decoration: none;
+}

@@ -1,0 +1,43 @@
+.contentPageContainer{
+    display: flex;
+    align-items:center;
+}
+
+.contentContainer {
+    margin-top: 200px;
+    display:flex;
+    justify-content: space-around;
+    flex-direction: row;
+    height:400px;
+}
+
+.contentContainer p {
+    width: 496px;
+    height: 326px;
+    font-family: var(--varela);
+    font-size: 24px;
+    line-height: 60px;
+    letter-spacing: 2px;
+}
+
+@media only screen and (max-width: 768px){
+    .contentPageContainer{
+        flex-direction: column;
+        align-items: center;
+    }
+    .contentContainer{
+        margin-top: 100px;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .contentContainer p {
+        width: 100%;
+        height: auto;
+        font-size: 18px;
+        line-height: 40px;
+        letter-spacing: 1px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+}

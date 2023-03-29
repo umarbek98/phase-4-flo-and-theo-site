@@ -1,0 +1,14 @@
+.footerInfoContainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 768px) {
+    .footerInfoContainer {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }

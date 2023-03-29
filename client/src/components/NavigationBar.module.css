@@ -1,0 +1,43 @@
+.headerLinksContainer a{
+    font-family: var(--varela);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.headerLinksContainer{
+    display:flex;
+    justify-content: space-between;
+    position: relative;
+    max-width:760px;
+    padding: 20px 95px;
+    margin: auto auto auto auto;
+    border-width: 0px;
+}
+
+.headerLinksContainer button{
+    background-color: #007bff;
+    float: right;
+    height: 30px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+.headerLinksContainer button:hover {
+    background-color: #0062cc;
+}
+
+@media only screen and (max-width: 768px) {
+  .headerLinksContainer {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .headerLinksContainer button {
+    float: none;
+    margin-top: 10px;
+  }
+}

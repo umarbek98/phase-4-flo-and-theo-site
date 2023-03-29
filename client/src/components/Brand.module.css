@@ -1,0 +1,22 @@
+.brandContainer {
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.brandContainer img {
+    width: 328.81px;
+    height: 84px;
+    cursor: pointer;
+}
+
+span {
+    color: var(--lightgray);
+    font-family: var(--varela);
+    font-style: normal;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    line-height: 40px;
+}

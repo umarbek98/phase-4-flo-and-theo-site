@@ -1,0 +1,41 @@
+.productCardContainer {
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    /* margin-left: 20px; */
+    margin-bottom: 20px;
+    border: 1px solid #808080;
+    border-radius: 20px;
+    box-sizing: border-box;
+    width: 30%;
+    padding: 40px;
+    cursor: pointer;
+  }
+  
+  .productCardContainer:hover {
+    filter: brightness(70%);
+  }
+  
+  .productCardContainer img {
+    width: 50%;
+    max-height:200px;
+  }
+  
+  @media screen and (max-width: 767px) {
+    .productListContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .productCardContainer {
+      width: 90%;
+      padding: 20px;
+    }
+  
+    .productCardContainer img {
+      width: 70%;
+    }
+  }

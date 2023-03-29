@@ -1,0 +1,65 @@
+Modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal_content {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .modal_header {
+    border-bottom: none;
+  }
+  
+  .modal_title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .modal_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .modal_button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .modal_button:hover {
+    background-color: #0062cc;
+  }
+  
+  a {
+    margin-top: 20px;
+    color: #007bff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  a:hover {
+    color: #0056b3;
+  }

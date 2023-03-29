@@ -1,0 +1,14 @@
+/* .mainPage{
+    display:block;
+    position: relative;
+    max-width:760px;
+    padding: 95px 95px;
+    margin: auto auto auto auto;
+    border-width: 0px;
+} */
+
+.mainPage{
+    display:flex;
+    flex-direction: column;
+    align-content: space-around;
+}
