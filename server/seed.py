@@ -11,7 +11,7 @@ if __name__ == '__main__':
         Product.query.delete()
         Customer.query.delete()
         Order.query.delete()
-        OrderItem.query.delete()
+        OrderProduct.query.delete()
         Ingredient.query.delete()
         ProductIngredient.query.delete()
 
@@ -64,11 +64,11 @@ if __name__ == '__main__':
                 last_name=fake.last_name(),
                 email=fake.email(),
                 password=fake.password(),
-                address=fake.street_address(),
-                city=fake.city(),
-                state=fake.state(),
-                zip_code=fake.zipcode(),
-                phone_number=fake.phone_number()
+                # address=fake.street_address(),
+                # city=fake.city(),
+                # state=fake.state(),
+                # zip_code=fake.zipcode(),
+                # phone_number=fake.phone_number()
             )
             customers.append(customer)
         db.session.add_all(customers)
@@ -80,7 +80,7 @@ if __name__ == '__main__':
             order = Order(
                 customer_id=fake.random_int(min=1, max=10),
                 order_date=fake.date_this_year(),
-                total_amount=fake.pydecimal(left_digits=3, right_digits=2, positive=True),
+                # total_amount=fake.pydecimal(left_digits=3, right_digits=2, positive=True),
                 status=fake.random_element(elements=('Pending', 'Shipped', 'Delivered'))
             )
             orders.append(order)
@@ -90,11 +90,11 @@ if __name__ == '__main__':
         # Add some order items
         order_items = []
         for i in range(20):
-            order_item = OrderItem(
+            order_item = OrderProduct(
                 order_id=fake.random_int(min=1, max=10),
                 product_id=fake.random_int(min=1, max=10),
                 quantity=fake.random_int(min=1, max=5),
-                price=fake.pydecimal(left_digits=2, right_digits=2, positive=True)
+                # price=fake.pydecimal(left_digits=2, right_digits=2, positive=True)
             )
             order_items.append(order_item)
         db.session.add_all(order_items)

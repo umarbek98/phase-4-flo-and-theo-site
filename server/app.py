@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, make_response
+from flask import Flask, jsonify, request, make_response,json
 from flask_sqlalchemy import SQLAlchemy
 import bcrypt
 from model import db, Product, Customer, Order, OrderProduct
@@ -106,11 +106,11 @@ def update_customer(customer_id):
     customer.email = data.get('email', customer.email)
     if 'password' in data:
         customer.password = data['password']
-    customer.address = data.get('address', customer.address)
-    customer.city = data.get('city', customer.city)
-    customer.state = data.get('state', customer.state)
-    customer.zip_code = data.get('zip_code', customer.zip_code)
-    customer.phone_number = data.get('phone_number', customer.phone_number)
+    # customer.address = data.get('address', customer.address)
+    # customer.city = data.get('city', customer.city)
+    # customer.state = data.get('state', customer.state)
+    # customer.zip_code = data.get('zip_code', customer.zip_code)
+    # customer.phone_number = data.get('phone_number', customer.phone_number)
     db.session.commit()
     return jsonify(customer.to_dict())
 
@@ -200,14 +200,14 @@ def delete_order(order_id):
 
 
 
-    
-
 @app.route('/login', methods=['POST'])
 def login():
     email = request.json.get('email')
+    print(email)
     password = request.json.get('password')
 
-    customer = Customer.query.filter_by(email=email).first()
+    customer = Customer.query.filter(Customer.email==email).first()
+    print(customer)
     if not customer or not customer.verify_password(password):
         return jsonify({'message': 'Invalid email or password'}), 401
 
