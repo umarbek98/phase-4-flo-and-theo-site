@@ -1,14 +1,43 @@
-.searchSidebarContainer{
-    display:flex;
-    flex-direction: column;
-    width: 1000px;
-}
+.searchSidebarContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    padding: 20px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    border-radius: 5px;
+    width: 400px;
+    height: 200px;
+  }
+  
+  .searchBar {
+    color: #333;
+  }
+  
+  .searchSidebarContainer input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  }
+  
+  h3 {
+    color: #333;
+    margin-top: 20px;
+  }
+  
+  .checkBoxContainer {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  Form.Check {
+    color: #333;
+    margin-bottom: 10px;
+  }
 
-.searchBar {
-    width: 200px;
-}
-
-.checkBoxContainer {
-
-}
-
+  .searchInputContainer {
+    display: flex;
+  }
