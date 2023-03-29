@@ -28,3 +28,16 @@
     50% { transform: translateY(-50px); }
     100% { transform: translate(0); }
 } */
+
+@media screen and  (max-width: 767px) {
+
+    .productListContainer{
+        flex-direction: column;
+   
+    }
+
+    .productListContainer img {
+        width: 100px;
+    }
+
+}

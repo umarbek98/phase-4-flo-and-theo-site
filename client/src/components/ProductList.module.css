@@ -6,3 +6,15 @@
     margin-left: 100px;
     
 }
+
+@media screen and  (max-width: 767px) {
+
+    .productListContainer{
+        flex-direction: column;
+   
+    }
+
+    .productListContainer img {
+    }
+
+}
