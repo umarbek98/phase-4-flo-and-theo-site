@@ -3,11 +3,11 @@ import './PressCard.css'
 function PressCard(props) {
   return (
     <li>
-      <a href={props.imgUrl} target="_blank" rel="noopener noreferrer">
+      <a href={props.imgUrl} >
         <img src={props.imgSrc} alt={props.imgAlt} />
       </a>
       <div className="overlay">
-        <span>{props.imgAlt}</span>
+        <span></span>
       </div>
     </li>
   );

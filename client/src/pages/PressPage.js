@@ -19,7 +19,6 @@ const PressPage = () => {
           <PressCard imgUrl="http://www.floandtheo.com/blog/so-glamourous" imgSrc={require("../images/Glamour_Logo_XL.png")}imgAlt="Glamour"/>
           <PressCard imgUrl="http://www.noveaux-mag.com/" imgSrc={require("../images/nouveuz.jpeg")}imgAlt="Nouveaux"/>
           <PressCard imgUrl="https://mailchimp.com/viceland/flo-and-theo/" imgSrc={require("../images/mailchimp.jpg")}imgAlt="Mailchimp"/>
-
         </ul>
       </div>
     </div>
