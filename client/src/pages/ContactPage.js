@@ -4,7 +4,6 @@ const ContactPage = () => {
 
     return (
         <div>
-            <Header />
             <div className={styles.content}>
                 <img src={require("../images/ContactPage.jpg")}></img>
                 <p>We can't wait to hear from you!<br/>
