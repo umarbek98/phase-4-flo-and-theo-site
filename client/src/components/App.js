@@ -13,6 +13,7 @@ import ProductPage from '../pages/ProductPage';
 import CartModal from './CartModal';
 import CheckoutModal from './CheckoutModal';
 import IngredientsPage from '../pages/IngredientsPage';
+import OrderPage from '../pages/OrderPage';
 
 
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/product" element={<ProductPage />} />
             <Route path="/ingredients" element={<IngredientsPage />} />
+            <Route path="/orders" element={<OrderPage />} />
           </Routes>
           <Footer />
           <LoginModal />

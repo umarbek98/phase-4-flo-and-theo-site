@@ -1,0 +1,35 @@
+.orderCardHeaderContainer {
+    display:flex;
+    justify-content: space-around;
+}
+
+
+.orderCardContainer img {
+    width:100px
+}
+
+.orderCardContainer button {
+    width: 150px;
+    height: 30px;
+}
+
+.orderCardContainer{
+    margin: 10px;
+    border-radius: 20px;
+    border: 1px gray solid;;
+}
+.orderCardBtnContainer {
+    display:flex;
+    align-items: center;
+}
+
+.orderCardImgContainer {
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.orderCardInfoContainer {
+    display:flex;
+    justify-content: space-around;
+
+}
