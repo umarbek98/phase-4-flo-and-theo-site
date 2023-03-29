@@ -197,5 +197,19 @@ def delete_order(order_id):
     db.session.commit()
     return '', 204
 
+@app.route('/login', methods=['POST'])
+def login():
+    email = request.json.get('email')
+    password = request.json.get('password')
+
+    customer = Customer.query.filter_by(email=email).first()
+    if not customer or not customer.verify_password(password):
+        return jsonify({'message': 'Invalid email or password'}), 401
+
+    # Login successful, return customer data
+    return jsonify(customer.to_dict())
+
+    
+
 if "__name__" == '__main__':
     app.run(debug=True)
