@@ -40,7 +40,7 @@ def create_product():
     db.session.commit()
     return jsonify(product.to_dict()), 201
 
-@app.route('/products/<int:product_id>', methods=['PUT'])
+@app.route('/products/<int:product_id>', methods=['PATCH'])
 def update_product(product_id):
     product = Product.query.get(product_id)
     if not product:
@@ -95,7 +95,7 @@ def create_customer():
     db.session.commit()
     return jsonify(customer.to_dict()), 201
 
-@app.route('/customers/<int:customer_id>', methods=['PUT'])
+@app.route('/customers/<int:customer_id>', methods=['PATCH'])
 def update_customer(customer_id):
     customer = Customer.query.get(customer_id)
     if not customer:
@@ -164,7 +164,7 @@ def create_order():
     db.session.commit()
     return jsonify(order.to_dict()), 201
 
-@app.route('/orders/', methods=['PUT'])
+@app.route('/orders/', methods=['PATCH'])
 def update_order(order_id):
     order = Order.query.get(order_id)
     if not order:
@@ -197,6 +197,10 @@ def delete_order(order_id):
     db.session.delete(order)
     db.session.commit()
     return '', 204
+
+
+
+    
 
 @app.route('/login', methods=['POST'])
 def login():

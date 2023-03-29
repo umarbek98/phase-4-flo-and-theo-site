@@ -68,3 +68,53 @@
   .flName div input {
     width: 395px;
   }
+
+  .modal_button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .modal_button:hover {
+    background-color: #0062cc;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .content {
+      margin-top: 30px;
+    }
+  
+    .content img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+  
+    .content p {
+      font-size: 1rem;
+      margin-bottom: 30px;
+    }
+  
+    form input[type="text"],
+    form textarea {
+      max-width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+    }
+  
+    form textarea {
+      height: 120px;
+    }
+  
+    .flName {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .flName div input {
+      width: 100%;
+    }
+  }

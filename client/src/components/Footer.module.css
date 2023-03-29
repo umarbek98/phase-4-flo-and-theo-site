@@ -1,11 +1,23 @@
 .topFooterContainer {
-    display:flex;
+    display: flex;
     justify-content: space-around;
-}
-
-.footerContainer {
+  }
+  
+  .footerContainer {
     margin-top: 100px;
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: flex-end;
-}
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .topFooterContainer {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .footerContainer {
+      margin-top: 50px;
+      justify-content: center;
+    }
+  }
