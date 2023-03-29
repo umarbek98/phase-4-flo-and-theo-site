@@ -3,7 +3,7 @@
 }
 
 .image-gallery > li {
-  /* fallback */
+ /* fall back begins */
   display: inline-block;
   width: 350px;
   margin: 0 5px 10px 5px;
