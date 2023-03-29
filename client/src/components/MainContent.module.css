@@ -20,3 +20,24 @@
     letter-spacing: 2px;
 }
 
+@media only screen and (max-width: 768px){
+    .contentPageContainer{
+        flex-direction: column;
+        align-items: center;
+    }
+    .contentContainer{
+        margin-top: 100px;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .contentContainer p {
+        width: 100%;
+        height: auto;
+        font-size: 18px;
+        line-height: 40px;
+        letter-spacing: 1px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+}
