@@ -1,6 +1,6 @@
 import React from 'react';
 import './ingredientsPage.css'
-import Ingredient from './ingredient';
+import Ingredient from '../components/ingredient';
 // import  './src/images'
 
 const Ingredients = () => {
