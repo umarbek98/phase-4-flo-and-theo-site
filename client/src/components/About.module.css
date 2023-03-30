@@ -1,0 +1,73 @@
+/* .aboutContainer {
+    margin-top: 200px;
+    display:flex;
+    justify-content: space-around;
+    flex-direction: row;
+    height:400px;
+}
+
+.aboutContainer p{
+    width: 496px;
+    height: 326px;
+    font-family: var(--varela);
+    font-size: 24px;
+    line-height: 60px;
+    letter-spacing: 2px;
+} */
+
+/* .contentPageContainer{
+    display: block;
+    align-items:center;
+} */
+
+.sistersContainer {
+    display: inline-block;
+    font-family: var(--varela);
+    font-weight: 400;
+    font-style: normal;
+    line-height: 2.2em;
+    font-size: 24px;
+    padding : 5PX 450PX 5px 450PX
+
+}
+
+.mayowaContainer {
+    display:block;
+    font-family: var(--varela);
+    font-weight: 400;
+    font-style: normal;
+    line-height: 2.2em;
+    font-size: 24px;
+    padding : 5PX 450PX 5px 450PX
+
+}
+
+.ebonyContainer {
+    display:block;
+    font-family: var(--varela);
+    font-weight: 400;
+    font-style: normal;
+    line-height: 2.2em;
+    font-size: 24px;
+    padding : 5PX 450PX 5px 450PX
+
+}
+
+
+
+/* .photo {
+    text-align: center;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  } */
+    /* padding : 0PX 400PX */
+
+/* .picture {
+    text-align: center;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+} */

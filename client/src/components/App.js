@@ -1,6 +1,7 @@
 import '../index.css';
 import HomePage from '../pages/HomePage';
 import ShopPage from "../pages/ShopPage";
+import AboutPage from '../pages/AboutPage';
 import styles from "./App.module.css";
 import LoginModal from './LoginModal';
 import 'bootstrap/dist/css/bootstrap.min.css';

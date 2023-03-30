@@ -1,7 +1,7 @@
-from flask import Flask, jsonify, request, make_response
+from flask import Flask, jsonify, request, make_response,json
 from flask_sqlalchemy import SQLAlchemy
 import bcrypt
-from module import db, Product, Customer, Order, OrderItem
+from model import db, Product, Customer, Order, OrderProduct
 from flask_migrate import Migrate
 
 app = Flask(__name__)
@@ -29,10 +29,11 @@ def create_product():
     data = request.get_json()
     product = Product(
         product_name=data['product_name'],
-        brand=data['brand'],
+        # brand=data['brand'],
         category=data['category'],
         price=data['price'],
         description=data['description'],
+        directions=data["directions"],
         image_url=data['image_url']
     )
     db.session.add(product)
@@ -58,7 +59,7 @@ def update_product(product_id):
 def delete_product(product_id):
     product = Product.query.get(product_id)
     if not product:
-        return jsonify({'error': 'Product not found'}), 404
+        return make_response(jsonify({'error': 'Product not found'})), 404
     db.session.delete(product)
     db.session.commit()
     return make_response(jsonify({}), 204)
@@ -80,15 +81,15 @@ def get_customer(customer_id):
 def create_customer():
     data = request.get_json()
     customer = Customer(
-        first_name=data['first_name'],
-        last_name=data['last_name'],
+        first_name=data['firstName'],
+        last_name=data['lastName'],
         email=data['email'],
         password=data['password'],
-        address=data['address'],
-        city=data['city'],
-        state=data['state'],
-        zip_code=data['zip_code'],
-        phone_number=data['phone_number']
+        # address=data['address'],
+        # city=data['city'],
+        # state=data['state'],
+        # zip_code=data['zip_code'],
+        # phone_number=data['phone_number']
     )
     db.session.add(customer)
     db.session.commit()
@@ -105,11 +106,11 @@ def update_customer(customer_id):
     customer.email = data.get('email', customer.email)
     if 'password' in data:
         customer.password = data['password']
-    customer.address = data.get('address', customer.address)
-    customer.city = data.get('city', customer.city)
-    customer.state = data.get('state', customer.state)
-    customer.zip_code = data.get('zip_code', customer.zip_code)
-    customer.phone_number = data.get('phone_number', customer.phone_number)
+    # customer.address = data.get('address', customer.address)
+    # customer.city = data.get('city', customer.city)
+    # customer.state = data.get('state', customer.state)
+    # customer.zip_code = data.get('zip_code', customer.zip_code)
+    # customer.phone_number = data.get('phone_number', customer.phone_number)
     db.session.commit()
     return jsonify(customer.to_dict())
 
@@ -153,7 +154,7 @@ def create_order():
         product = Product.query.get(product_id)
         if not product:
             return jsonify({'error': 'Product not found'}), 404
-    order_item = OrderItem(
+    order_item = OrderProduct(
     product_id=product_id,
     quantity=item_data['quantity'],
     price=product.price
@@ -179,7 +180,7 @@ def update_order(order_id):
         product = Product.query.get(product_id)
         if not product:
             return jsonify({'error': 'Product not found'}), 404
-    order_item = OrderItem(
+    order_item = OrderProduct(
     product_id=product_id,
     quantity=item_data['quantity'],
     price=product.price
@@ -197,19 +198,20 @@ def delete_order(order_id):
     db.session.commit()
     return '', 204
 
+
 @app.route('/login', methods=['POST'])
 def login():
     email = request.json.get('email')
+    print(email)
     password = request.json.get('password')
 
-    customer = Customer.query.filter_by(email=email).first()
+    customer = Customer.query.filter(Customer.email==email).first()
+    print(customer)
     if not customer or not customer.verify_password(password):
         return jsonify({'message': 'Invalid email or password'}), 401
 
     # Login successful, return customer data
     return jsonify(customer.to_dict())
-
-    
 
 if "__name__" == '__main__':
     app.run(debug=True)

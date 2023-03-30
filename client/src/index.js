@@ -7,6 +7,10 @@ import { RegisterProvider } from './contexts/RegisterContext';
 import { BrowserRouter } from "react-router-dom"
 import { CartProvider } from './contexts/CartContext';
 import { CheckoutProvider } from './contexts/CheckoutContext';
+import { CancelProvider } from './contexts/CancelContext';
+import { OrderProvider } from './contexts/OrderContext';
+import { CancelConfirmProvider } from './contexts/CancelConfirmContext';
+import { ProductsProvider } from './contexts/ProductsContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,9 +19,17 @@ root.render(
       <RegisterProvider>
         <CartProvider>
           <CheckoutProvider>
-            <BrowserRouter>
-              <App />
-            </BrowserRouter>
+            <CancelProvider>
+              <OrderProvider>
+                <CancelConfirmProvider>
+                  <ProductsProvider>
+                    <BrowserRouter>
+                      <App />
+                    </BrowserRouter>
+                  </ProductsProvider>
+                </CancelConfirmProvider>
+              </OrderProvider>
+            </CancelProvider>
           </CheckoutProvider>
         </CartProvider>
       </RegisterProvider>
