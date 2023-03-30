@@ -18,6 +18,7 @@ import OrderPage from '../pages/OrderPage';
 import ContactPage from "../pages/ContactPage";
 import OrderModal from './OrderModal';
 import PressPage from '../pages/PressPage';
+import PrivacyPage from '../pages/PrivacyPage';
 
 
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="/orders" element={<OrderPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/privacypolicy" element={<PrivacyPage />} />
         </Routes>
         <Footer />
         <LoginModal />
