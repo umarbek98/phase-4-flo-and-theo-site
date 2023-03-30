@@ -208,7 +208,7 @@ def login():
     customer = Customer.query.filter(Customer.email==email).first()
     print(customer)
     if not customer or not customer.verify_password(password):
-        return jsonify({'message': 'Invalid email or password'}), 401
+        return jsonify(None), 401
 
     # Login successful, return customer data
     return jsonify(customer.to_dict())

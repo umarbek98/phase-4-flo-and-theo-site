@@ -1,5 +1,6 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Modal from "react-bootstrap/Modal"
+import { CustomerContext } from "../contexts/CustomerContext";
 import { LoginContext } from "../contexts/LoginContext";
 import { RegisterContext } from "../contexts/RegisterContext";
 import styles from "./LoginModal.module.css"
@@ -9,6 +10,7 @@ const LoginModal = () => {
     const { showRegister, setShowRegister } = useContext(RegisterContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { customer, setCustomer } = useContext(CustomerContext)
 
     const switchToRegister = () => {
         setShowLogin(false)
@@ -26,10 +28,17 @@ const LoginModal = () => {
             });
             const data = await response.json();
             console.log(data);
+            setCustomer(data)
+            
         } catch (error) {
             console.log(error);
-        }
+        }  
     }
+
+    // Once user logs in, close modal
+    useEffect(() => {
+        setShowLogin(false)
+    },[customer])
 
     return (
         <Modal show={showLogin} onHide={() => setShowLogin(false)} size="lg" aria-labelledby="container-modal-title-vcenter" centered>
