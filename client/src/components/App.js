@@ -2,6 +2,7 @@
 import '../index.css';
 import HomePage from '../pages/HomePage';
 import ShopPage from "../pages/ShopPage";
+import AboutPage from '../pages/AboutPage';
 import styles from "./App.module.css";
 import LoginModal from './LoginModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -34,6 +35,7 @@ function App() {
           <Route path="/press" element={<PressPage />} />
           <Route path="/orders" element={<OrderPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/about" element={<AboutPage />} />
         </Routes>
         <Footer />
         <LoginModal />
