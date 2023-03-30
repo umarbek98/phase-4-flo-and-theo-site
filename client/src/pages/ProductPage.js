@@ -13,7 +13,7 @@ const ProductPage = ({ cart, setCart }) => {
     },[])
     return(
         <div className={styles.productPageContainer}>
-            <ProductInfo product={product} setCart={setCart}/>
+            <ProductInfo product={product} cart={cart} setCart={setCart}/>
             <p>{product.description}</p>
         </div>
     )

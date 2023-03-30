@@ -41,7 +41,7 @@ function App() {
         <Footer />
         <LoginModal />
         <RegisterModal />
-        <CartModal cart={cart}/>
+        <CartModal cart={cart} setCart={setCart}/>
         <CheckoutModal />
       </div>
     </div>

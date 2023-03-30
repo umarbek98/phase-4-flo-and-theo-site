@@ -1,9 +1,9 @@
 import styles from "./ProductInfo.module.css"
 
-const ProductInfo = ({ product, setCart }) => {
+const ProductInfo = ({ product, setCart, cart }) => {
 
     function addToCart(e) {
-        setCart(product)
+        setCart([...cart, product])
     }
 
     return(

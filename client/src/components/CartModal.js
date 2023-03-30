@@ -1,11 +1,12 @@
-
 import { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
 import styles from "./CartModal.module.css"
 import { Modal } from "react-bootstrap"
 import { CheckoutContext } from "../contexts/CheckoutContext";
+import CartCard from "./CartCard";
 
-const CartModal = ({cart}) => {
+
+const CartModal = ({cart, setCart}) => {
     const { showCart, setShowCart } = useContext(CartContext)
     const { showCheckout, setShowCheckout } = useContext(CheckoutContext)
 
@@ -13,20 +14,23 @@ const CartModal = ({cart}) => {
         setShowCart(false)
         setShowCheckout(true)
     }
-    
+
+    const handleDelete = (id) => {
+        const updatedCartItems = cart.filter(item => item.product_id !== id);
+        setCart(updatedCartItems);
+      }
+
     return(
-        <Modal show={showCart} onHide={() => setShowCart(false)} size="lg" aria-labelledby="container-modal-title-vcenter" centered>
+        <Modal  show={showCart} onHide={() => setShowCart(false)} size="lg" aria-labelledby="container-modal-title-vcenter" centered>
             <Modal.Header>
                 <Modal.Title>Cart</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                <div>
-                    <h2>{cart.name}</h2>
-                </div>
+            <Modal.Body className={styles.mainContainer}>
+                {cart.map(product => <CartCard id={product.product_id} product={product} onDelete={handleDelete}/>)}
             </Modal.Body>
             <Modal.Footer>
-                <button onClick={proceedToCheckout}>Proceed to Checkout</button>
-                <button onClick={() => setShowCart(false)}>Close</button>
+                <button className={styles.checkoutButton} onClick={proceedToCheckout}>Proceed to Checkout</button>
+                <button className={styles.closeButton} onClick={() => setShowCart(false)}>Close</button>
             </Modal.Footer>
         </Modal>
     )

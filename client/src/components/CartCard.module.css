@@ -6,7 +6,8 @@
     align-items: center;
     /* margin-left: 20px; */
     margin-bottom: 20px;
-    border: 1px solid #808080;
+    margin-left: 10px;
+    border: 1px solid #007bff;
     border-radius: 20px;
     box-sizing: border-box;
     width: 30%;
