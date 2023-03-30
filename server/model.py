@@ -14,7 +14,7 @@ class Product(db.Model):
     directions = db.Column(db.Text)
     image_url = db.Column(db.String(255))
     ingredients = db.relationship("ProductIngredient", backref="product")
-    order_items = db.relationship('OrderProduct', backref='product')
+    order_products = db.relationship('OrderProduct', backref='product')
  
     def to_dict(self):
         print(self.ingredients)
@@ -107,21 +107,23 @@ class Order(db.Model):
     __tablename__ = 'orders'
     order_id = db.Column(db.Integer, primary_key=True)
     customer_id = db.Column(db.Integer, db.ForeignKey('customers.customer_id'))
+    order_number = db.Column(db.String)
     order_date = db.Column(db.DateTime)
     order_address = db.Column(db.String)
     # total_amount = db.Column(db.Float)
     status = db.Column(db.String(255))
-    order_items = db.relationship('OrderProduct', backref='order')
+    order_products = db.relationship('OrderProduct', backref='order')
  
     def to_dict(self):
         return {
             'order_id': self.order_id,
             'customer_id': self.customer_id,
+            'order_number': self.order_number,
             'order_date': self.order_date,
             'order_address': self.order_address,
             # 'total_amount': self.total_amount,
             'status': self.status,
-            'order_items': [order_item.to_dict() for order_item in self.order_items]
+            'order_products': [order_product.to_dict() for order_product in self.order_products]
         }
  
 class OrderProduct(db.Model):
@@ -133,13 +135,13 @@ class OrderProduct(db.Model):
     unit_price = db.Column(db.Float)
  
     def to_dict(self):
+        product = Product.query.filter(Product.product_id == self.product_id).first()
         return {
-            'order_item_id': self.order_item_id,
-            'order_id': self.order_id,
+            # 'order_item_id': self.order_item_id,
             'product_id': self.product_id,
             'quantity': self.quantity,
-            'price': self.price,
-            'product': self.product.to_dict()
+            'unit_price': self.unit_price,
+            'product': product.to_dict()
         }
 
 

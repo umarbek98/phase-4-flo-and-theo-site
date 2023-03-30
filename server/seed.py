@@ -79,7 +79,9 @@ if __name__ == '__main__':
         for i in range(10):
             order = Order(
                 customer_id=fake.random_int(min=1, max=10),
+                order_number=fake.ean(),
                 order_date=fake.date_this_year(),
+                order_address=fake.address(),
                 # total_amount=fake.pydecimal(left_digits=3, right_digits=2, positive=True),
                 status=fake.random_element(elements=('Pending', 'Shipped', 'Delivered'))
             )

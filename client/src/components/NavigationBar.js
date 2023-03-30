@@ -12,6 +12,11 @@ const NavigationBar = () => {
     const { customer, setCustomer } = useContext(CustomerContext)
     const navigate = useNavigate();
 
+    const Logout = () => {
+        setCustomer(undefined)
+        navigate("/")
+    }
+
     return(
         <div className={styles.headerLinksContainer}>
             <a onClick={() => navigate("/")}>Home</a>
@@ -21,7 +26,7 @@ const NavigationBar = () => {
             <a onClick={() => navigate("/press")}>Press</a>
             <a onClick={() => navigate("/contact")}>Contact</a>
             {customer ?
-                <button onClick={() => setCustomer(undefined)}>Logout, {customer.first_name} {customer.last_name}?</button>
+                <button onClick={Logout}>Logout, {customer.first_name} {customer.last_name}?</button>
                 : 
                 <button onClick={() => setShowLogin(true)}>Login/Register</button>}
            

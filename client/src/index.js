@@ -12,6 +12,7 @@ import { OrderProvider } from './contexts/OrderContext';
 import { CancelConfirmProvider } from './contexts/CancelConfirmContext';
 import { ProductsProvider } from './contexts/ProductsContext';
 import { CustomerProvider } from './contexts/CustomerContext';
+import { ViewProvider } from './contexts/ViewContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -25,9 +26,11 @@ root.render(
                 <CancelConfirmProvider>
                   <ProductsProvider>
                     <CustomerProvider>
-                      <BrowserRouter>
-                        <App />
-                      </BrowserRouter>
+                      <ViewProvider>
+                        <BrowserRouter>
+                          <App />
+                        </BrowserRouter>
+                      </ViewProvider>
                     </CustomerProvider>
                   </ProductsProvider>
                 </CancelConfirmProvider>

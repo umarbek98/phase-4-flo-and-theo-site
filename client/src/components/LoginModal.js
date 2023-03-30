@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/Modal"
 import { CustomerContext } from "../contexts/CustomerContext";
 import { LoginContext } from "../contexts/LoginContext";
 import { RegisterContext } from "../contexts/RegisterContext";
+import { useNavigate } from "react-router-dom"
 import styles from "./LoginModal.module.css"
 
 const LoginModal = () => {
@@ -11,6 +12,7 @@ const LoginModal = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { customer, setCustomer } = useContext(CustomerContext)
+    const navigate = useNavigate()
 
     const switchToRegister = () => {
         setShowLogin(false)
@@ -38,6 +40,7 @@ const LoginModal = () => {
     // Once user logs in, close modal
     useEffect(() => {
         setShowLogin(false)
+        navigate("/")
     },[customer])
 
     return (
