@@ -19,8 +19,8 @@
   }
   
   .productCardContainer img {
-    width: 50%;
-    max-height:200px;
+    height: 200px;
+    width: 200px;
   }
   
   @media screen and (max-width: 767px) {
