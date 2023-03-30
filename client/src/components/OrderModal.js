@@ -15,6 +15,11 @@ const OrderModal = () => {
         setView({})
     }
 
+    const switchToCancelConfirm = () => {
+        setShowOrder(false)
+        setShowCancelConfirm(true)
+    }
+
     return(
         <Modal show={showOrder} onHide={unviewProduct} size="lg" aria-labelledby="container-modal-title-vcenter" centered>
             <Modal.Header>
@@ -27,7 +32,7 @@ const OrderModal = () => {
             null}
             </Modal.Body>
             <Modal.Footer>
-                <button>CANCEL ORDER</button>
+                <button onClick={switchToCancelConfirm}>CANCEL ORDER</button>
                 <button onClick={unviewProduct}>Close</button>
             </Modal.Footer>
         </Modal>

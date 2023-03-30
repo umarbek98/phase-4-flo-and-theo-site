@@ -11,7 +11,7 @@ const LoginModal = () => {
     const { showRegister, setShowRegister } = useContext(RegisterContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { customer, setCustomer } = useContext(CustomerContext)
+    const { customer, setCustomer, orders, setOrders } = useContext(CustomerContext)
     const navigate = useNavigate()
 
     const switchToRegister = () => {
@@ -34,12 +34,19 @@ const LoginModal = () => {
             
         } catch (error) {
             console.log(error);
-        }  
+        }
     }
 
-    // Once user logs in, close modal
+    const getOrdersForCustomer = async () => {
+        const response = await fetch(`/orders/bycustomer/${customer.customer_id}`)
+        const data = await response.json()
+        setOrders(data)
+    }
+
+    // Once user logs in, close modal and set orders
     useEffect(() => {
         setShowLogin(false)
+        getOrdersForCustomer()
         navigate("/")
     },[customer])
 

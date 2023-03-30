@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CancelConfirmContext } from "../contexts/CancelConfirmContext";
+import { CustomerContext } from "../contexts/CustomerContext";
 import { OrderContext } from "../contexts/OrderContext";
 import { ViewContext } from "../contexts/ViewContext";
 import styles from "./OrderCard.module.css"
@@ -7,10 +8,18 @@ const OrderCard = ({ order }) => {
     const { showCancelConfirm, setShowCancelConfirm } = useContext(CancelConfirmContext)
     const { showOrder, setShowOrder } = useContext(OrderContext)
     const { view, setView } = useContext(ViewContext)
+    const { customer, setCustomer, orders, setOrders } = useContext(CustomerContext)
+
 
     const viewOrder = () => {
         setView(order)
         setShowOrder(true)
+    }
+
+    const setCancelView = async () => {
+        setView(order)
+        setShowCancelConfirm(true)
+        console.log(orders)
     }
 
     return(
@@ -29,7 +38,7 @@ const OrderCard = ({ order }) => {
                 </div>
                 <div className={styles.orderCardBtnContainer}>
                     <button onClick={viewOrder}>SHOW ORDER</button>
-                    <button onClick={() => setShowCancelConfirm(true)}>CANCEL ORDER</button>
+                    <button onClick={setCancelView}>CANCEL ORDER</button>
                 </div>
             </div>
         </div>
