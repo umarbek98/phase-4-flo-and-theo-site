@@ -26,7 +26,7 @@ const NavigationBar = () => {
             <a onClick={() => navigate("/press")}>Press</a>
             <a onClick={() => navigate("/contact")}>Contact</a>
             {customer ?
-                <button onClick={Logout}>Logout, {customer.first_name} {customer.last_name}?</button>
+                <button onClick={Logout}>Logout, {"Fitzpatrick"}?</button>
                 : 
                 <button onClick={() => setShowLogin(true)}>Login/Register</button>}
            
