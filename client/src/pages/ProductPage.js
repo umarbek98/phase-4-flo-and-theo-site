@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import ProductInfo from "../components/ProductInfo";
 import styles from "./ProductPage.module.css";
-const ProductPage = () => {
+const ProductPage = ({ cart, setCart, addToCart }) => {
     const { product_id } = useParams()
     const [product, setProduct] = useState({})
     useEffect(() => {
@@ -13,7 +13,7 @@ const ProductPage = () => {
     },[])
     return(
         <div className={styles.productPageContainer}>
-            <ProductInfo product={product} />
+            <ProductInfo product={product} cart={cart} setCart={setCart} addToCart={addToCart}/>
             <p>{product.description}</p>
         </div>
     )

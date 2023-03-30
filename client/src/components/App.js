@@ -1,4 +1,3 @@
-
 import '../index.css';
 import HomePage from '../pages/HomePage';
 import ShopPage from "../pages/ShopPage";
@@ -20,11 +19,29 @@ import OrderModal from './OrderModal';
 import PressPage from '../pages/PressPage';
 import FaqPage from '../pages/FaqPage';
 import PrivacyPage from '../pages/PrivacyPage';
+import { useState } from 'react';
 
 
 
 
 function App() {
+  const [cart, setCart] = useState([])
+
+  function addToCart(product) {
+    const exist = cart.find((item) => item.product_id === product.product_id)
+      if (exist) {
+        setCart(
+          cart.map((item) =>
+            item.product_id === exist.product_id
+              ? { ...exist, qnty: exist.qnty + 1 }
+              : item
+          )
+        );
+      } else {
+        setCart([...cart, { ...product, qnty: 1 }]);
+      }
+    }
+
   return (
     <div className="App">
       <div className={styles.mainPage}>
@@ -32,19 +49,18 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/shop" element={<ShopPage />} />
-          <Route path="/shop/:product_id" element={<ProductPage />} />
+          <Route path="/shop/:product_id" element={<ProductPage cart={cart} setCart={setCart} addToCart={addToCart}/>} />
           <Route path="/ingredients" element={<IngredientsPage />} />
           <Route path="/press" element={<PressPage />} />
           <Route path="/orders" element={<OrderPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/about" element={<AboutPage />} />
           <Route path="/faq" element={<FaqPage/>} />
           <Route path="/privacypolicy" element={<PrivacyPage />} />
         </Routes>
         <Footer />
         <LoginModal />
         <RegisterModal />
-        <CartModal />
+        <CartModal cart={cart} setCart={setCart} addToCart={addToCart}/>
         <CheckoutModal />
       </div>
     </div>

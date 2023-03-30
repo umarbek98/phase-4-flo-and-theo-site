@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
 import { CheckoutContext } from "../contexts/CheckoutContext";
 import { Modal } from "react-bootstrap"
+import CartModal from "./CartModal";
 
 
 const CheckoutModal = () => {
