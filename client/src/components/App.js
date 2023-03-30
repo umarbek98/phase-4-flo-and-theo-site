@@ -1,4 +1,3 @@
-
 import '../index.css';
 import HomePage from '../pages/HomePage';
 import ShopPage from "../pages/ShopPage";
@@ -15,27 +14,34 @@ import CheckoutModal from './CheckoutModal';
 import IngredientsPage from '../pages/IngredientsPage';
 import OrderPage from '../pages/OrderPage';
 import ContactPage from "../pages/ContactPage";
+import OrderModal from './OrderModal';
+import PressPage from '../pages/PressPage';
+import { useState } from 'react';
+
 
 
 
 function App() {
+  const [cart, setCart] = useState([])
+
   return (
     <div className="App">
       <div className={styles.mainPage}>
-          <Header />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/shop" element={<ShopPage />} />
-            <Route path="/product" element={<ProductPage />} />
-            <Route path="/ingredients" element={<IngredientsPage />} />
-            <Route path="/orders" element={<OrderPage />} />
-            <Route path="/contact" element={<ContactPage/>} />
-          </Routes>
-          <Footer />
-          <LoginModal />
-          <RegisterModal />
-          <CartModal />
-          <CheckoutModal />
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/shop" element={<ShopPage />} />
+          <Route path="/shop/:product_id" element={<ProductPage cart={cart} setCart={setCart}/>} />
+          <Route path="/ingredients" element={<IngredientsPage />} />
+          <Route path="/press" element={<PressPage />} />
+          <Route path="/orders" element={<OrderPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
+        <Footer />
+        <LoginModal />
+        <RegisterModal />
+        <CartModal cart={cart}/>
+        <CheckoutModal />
       </div>
     </div>
   );

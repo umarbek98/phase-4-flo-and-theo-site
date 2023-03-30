@@ -1,10 +1,11 @@
+
 import { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
 import styles from "./CartModal.module.css"
 import { Modal } from "react-bootstrap"
 import { CheckoutContext } from "../contexts/CheckoutContext";
 
-const CartModal = () => {
+const CartModal = ({cart}) => {
     const { showCart, setShowCart } = useContext(CartContext)
     const { showCheckout, setShowCheckout } = useContext(CheckoutContext)
 
@@ -19,6 +20,9 @@ const CartModal = () => {
                 <Modal.Title>Cart</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+                <div>
+                    <h2>{cart.name}</h2>
+                </div>
             </Modal.Body>
             <Modal.Footer>
                 <button onClick={proceedToCheckout}>Proceed to Checkout</button>
