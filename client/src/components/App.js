@@ -51,6 +51,7 @@ function App() {
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/shop/:product_id" element={<ProductPage cart={cart} setCart={setCart} addToCart={addToCart}/>} />
           <Route path="/ingredients" element={<IngredientsPage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/press" element={<PressPage />} />
           <Route path="/orders" element={<OrderPage />} />
           <Route path="/contact" element={<ContactPage />} />
