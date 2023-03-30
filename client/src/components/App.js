@@ -25,6 +25,21 @@ import { useState } from 'react';
 function App() {
   const [cart, setCart] = useState([])
 
+  function addToCart(product) {
+    const exist = cart.find((item) => item.product_id === product.product_id)
+      if (exist) {
+        setCart(
+          cart.map((item) =>
+            item.product_id === exist.product_id
+              ? { ...exist, qnty: exist.qnty + 1 }
+              : item
+          )
+        );
+      } else {
+        setCart([...cart, { ...product, qnty: 1 }]);
+      }
+    }
+
   return (
     <div className="App">
       <div className={styles.mainPage}>
@@ -32,7 +47,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/shop" element={<ShopPage />} />
-          <Route path="/shop/:product_id" element={<ProductPage cart={cart} setCart={setCart}/>} />
+          <Route path="/shop/:product_id" element={<ProductPage cart={cart} setCart={setCart} addToCart={addToCart}/>} />
           <Route path="/ingredients" element={<IngredientsPage />} />
           <Route path="/press" element={<PressPage />} />
           <Route path="/orders" element={<OrderPage />} />
@@ -41,7 +56,7 @@ function App() {
         <Footer />
         <LoginModal />
         <RegisterModal />
-        <CartModal cart={cart} setCart={setCart}/>
+        <CartModal cart={cart} setCart={setCart} addToCart={addToCart}/>
         <CheckoutModal />
       </div>
     </div>
