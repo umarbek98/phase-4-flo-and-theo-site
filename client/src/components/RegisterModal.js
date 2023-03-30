@@ -3,10 +3,13 @@ import Modal from "react-bootstrap/Modal"
 import { RegisterContext } from "../contexts/RegisterContext";
 import { LoginContext } from "../contexts/LoginContext";
 import styles from "./RegisterModal.module.css"
+import { FieldEmpty, PasswordsDontMatch } from "./ValidationToasts";
 
 const RegisterModal = () => {
     const { showRegister, setShowRegister } = useContext(RegisterContext)
     const { showLogin, setShowLogin } = useContext(LoginContext);
+    const [ isMatching, setIsMatching ] = useState(true)
+    const [ areFieldsEmpty, setAreFieldsEmpty ] = useState(false)
     const [ registerForm, setRegisterForm ] = useState({
         email: "",
         password: "",
@@ -14,6 +17,27 @@ const RegisterModal = () => {
         firstName: "",
         lastName: "",
     })
+
+    // If passwords match retrn true otherwise return false
+    const checkPasswordMatch = () => {
+        if(registerForm.password !== registerForm.confirmPassword){
+            return false
+        } else {
+            return true
+        }
+    }
+
+    // Return true if there is an empty field
+    const checkForEmptyFields = () => {
+        let found = false
+        for(let field in registerForm){
+            if(registerForm[field] === ""){
+                found = true
+            }
+            console.log(registerForm[field])
+        }
+        return found
+    }
     const switchToLogin = () => {
         setShowRegister(false)
         setShowLogin(true)
@@ -26,21 +50,28 @@ const RegisterModal = () => {
     }
 
     const submitRegistrationData = () => {
-        const newRegistration = {
-            email: registerForm.email,
-            password: registerForm.password,
-            firstName: registerForm.firstName,
-            lastName: registerForm.lastName
-        }
+        // Check Passwords
+        setIsMatching(checkPasswordMatch())
+        setAreFieldsEmpty(checkForEmptyFields())
 
-        fetch("/customers", {
-            method: "POST",
-            headers: { "Content-Type" : "application/json"},
-            body: JSON.stringify(newRegistration)
-        })
-        .then(res => res.json())
-        .then(data => console.log(data))
-        .catch((err) => console.error(err))
+        if(isMatching && !areFieldsEmpty){
+            const newRegistration = {
+                email: registerForm.email,
+                password: registerForm.password,
+                firstName: registerForm.firstName,
+                lastName: registerForm.lastName
+            }
+    
+            fetch("/customers", {
+                method: "POST",
+                headers: { "Content-Type" : "application/json"},
+                body: JSON.stringify(newRegistration)
+            })
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch((err) => console.error(err))
+        }
+        
     }
 
     return (
@@ -48,6 +79,10 @@ const RegisterModal = () => {
             <Modal.Header className={styles.modal_header}>
             </Modal.Header>
             <Modal.Body className={styles.modal_content}>
+                {/** If passwords dont match and all the fields are filled */}
+                {!isMatching && !areFieldsEmpty ? <PasswordsDontMatch /> : null}
+                {/** If there are empty fields */}
+                {areFieldsEmpty ? <FieldEmpty /> : null}
                 <h2>Register</h2>
                 <input onChange={handleRegisterChange} name="email" type="text" placeholder="Email Address"/>
                 <input onChange={handleRegisterChange} name="password" type="password" placeholder="Password"/>

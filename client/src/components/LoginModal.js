@@ -4,6 +4,7 @@ import { CustomerContext } from "../contexts/CustomerContext";
 import { LoginContext } from "../contexts/LoginContext";
 import { RegisterContext } from "../contexts/RegisterContext";
 import { useNavigate } from "react-router-dom"
+import { InvalidEmailOrPassword, LoginEmpty } from "./ValidationToasts";
 import styles from "./LoginModal.module.css"
 
 const LoginModal = () => {
@@ -12,6 +13,8 @@ const LoginModal = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { customer, setCustomer, orders, setOrders } = useContext(CustomerContext)
+    const [isLoginEmpty, setIsLoginEmpty] = useState(false) // Should be false at beginning
+    const [isInvalid, setIsInvalid] = useState(false)
     const navigate = useNavigate()
 
     const switchToRegister = () => {
@@ -19,22 +22,49 @@ const LoginModal = () => {
         setShowRegister(true)
     }
 
-    const handleLogin = async () => {
-        try {
-            const response = await fetch("/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ email, password })
-            });
-            const data = await response.json();
-            console.log(data);
-            setCustomer(data)
-            
-        } catch (error) {
-            console.log(error);
+    const onFieldChange = (e) => {
+        // Reset Error Toasts
+        setIsLoginEmpty(false)
+        setIsInvalid(false)
+        if(e.target.name === "email"){
+            setEmail(e.target.value)
+            console.log(email)
+        } else {
+            setPassword(e.target.value)
+            console.log(password)
         }
+
+    }
+
+    const handleLogin = async () => {
+        if(email === "" || password === ""){
+            setIsLoginEmpty(true)
+        } else {
+            setIsLoginEmpty(false)
+        }
+        if(isLoginEmpty === false){
+            try {
+                const response = await fetch("/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                console.log(response)
+                const data = await response.json();
+                if(response.ok){
+                    setCustomer(data)
+                } else {
+                    setIsInvalid(true)
+                }
+                console.log(data);
+                
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        
     }
 
     const getOrdersForCustomer = async () => {
@@ -54,8 +84,10 @@ const LoginModal = () => {
         <Modal show={showLogin} onHide={() => setShowLogin(false)} size="lg" aria-labelledby="container-modal-title-vcenter" centered>
             <Modal.Body className={styles.modal_content}>
                 <h2>Login to Account</h2>
-                <input type="text" placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)}/>
-                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/> 
+                {isLoginEmpty ?  <LoginEmpty /> : null}
+                {isInvalid && !isLoginEmpty? <InvalidEmailOrPassword /> : null}
+                <input  type="text" placeholder="Email Address" name="email"value={email} onChange={onFieldChange}/>
+                <input type="password" placeholder="Password" password="password"value={password} onChange={onFieldChange}/> 
                 <button className={styles.modal_button} onClick={handleLogin}>Login</button>
                 <a onClick={switchToRegister}>Don't have an account? <b style={{color: '#007bff'}}>Register here.</b></a>
             </Modal.Body>
