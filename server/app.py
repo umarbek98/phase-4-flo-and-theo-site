@@ -189,7 +189,7 @@ def update_order(order_id):
     db.session.commit()
     return jsonify(order.to_dict())
 
-@app.route('/orders/', methods=['DELETE'])
+@app.route('/orders/<int:order_id>', methods=['DELETE'])
 def delete_order(order_id):
     order = Order.query.get(order_id)
     if not order:
@@ -197,6 +197,17 @@ def delete_order(order_id):
     db.session.delete(order)
     db.session.commit()
     return '', 204
+
+# Orders for Specific Customer
+@app.route("/orders/bycustomer/<int:customer_id>")
+def get_orders_by_customer(customer_id):
+    orders = [] 
+    for order in Order.query.filter(Order.customer_id == customer_id).all():
+        orders.append(order.to_dict())
+    if len(orders) > 0:
+        return make_response(jsonify(orders),200)
+    else:
+        return make_response({"error":"No orders found"},404)
 
 
 @app.route('/login', methods=['POST'])

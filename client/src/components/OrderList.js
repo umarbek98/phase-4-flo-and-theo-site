@@ -4,10 +4,10 @@ import OrderCard from "./OrderCard";
 
 const OrderList = () => {
 
-    const { customer } = useContext(CustomerContext)
+    const { customer, orders } = useContext(CustomerContext)
     return (
         <div>
-            { customer.orders ? customer.orders.map(order => 
+            { orders && orders.length > 0 ? orders.map(order => 
             <OrderCard 
             key={order.order_id} 
             order={order}/>) : null}
