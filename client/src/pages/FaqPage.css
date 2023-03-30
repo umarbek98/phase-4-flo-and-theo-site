@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2{
+  padding-bottom: 1rem;
+}
+
+.container {
+  padding: 40px 5%;
+}
+
+
+.accordion-button:not(.collapsed) {
+  color: #ffffff;
+  background-color: #000000;
+}
