@@ -1,15 +1,16 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { CustomerContext } from "../contexts/CustomerContext";
 import OrderCard from "./OrderCard";
 
 const OrderList = () => {
+
+    const { customer } = useContext(CustomerContext)
     return (
         <div>
-            <OrderCard />
-            <OrderCard />
-            <OrderCard />
-            <OrderCard />
-            <OrderCard />
-            <OrderCard />
+            { customer.orders ? customer.orders.map(order => 
+            <OrderCard 
+            key={order.order_id} 
+            order={order}/>) : null}
         </div>
     )
 }

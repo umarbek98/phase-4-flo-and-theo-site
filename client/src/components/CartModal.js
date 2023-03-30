@@ -3,14 +3,24 @@ import { CartContext } from "../contexts/CartContext";
 import styles from "./CartModal.module.css"
 import { Modal } from "react-bootstrap"
 import { CheckoutContext } from "../contexts/CheckoutContext";
+import { LoginContext } from "../contexts/LoginContext";
+import { CustomerContext } from "../contexts/CustomerContext";
 
 const CartModal = () => {
     const { showCart, setShowCart } = useContext(CartContext)
     const { showCheckout, setShowCheckout } = useContext(CheckoutContext)
+    const { showLogin, setShowLogin } = useContext(LoginContext)
+    const { customer } = useContext(CustomerContext)
 
     const proceedToCheckout = () => {
-        setShowCart(false)
-        setShowCheckout(true)
+        if(customer){
+            setShowCart(false)
+            setShowCheckout(true)
+        } else {
+            setShowCart(false)
+            setShowLogin(true)
+        }
+        
     }
     
     return(
