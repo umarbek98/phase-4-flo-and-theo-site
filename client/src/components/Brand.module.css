@@ -11,8 +11,8 @@
 }
 
 span {
-    color: var(--lightgray);
-    font-family: var(--varela);
+    /* color: var(--lightgray); */
+    
     font-style: normal;
     font-size: 12px;
     font-weight: bold;
