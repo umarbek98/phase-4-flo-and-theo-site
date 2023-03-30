@@ -16,6 +16,7 @@ import IngredientsPage from '../pages/IngredientsPage';
 import OrderPage from '../pages/OrderPage';
 import ContactPage from "../pages/ContactPage";
 import OrderModal from './OrderModal';
+import PressPage from '../pages/PressPage';
 
 
 
@@ -24,20 +25,21 @@ function App() {
   return (
     <div className="App">
       <div className={styles.mainPage}>
-          <Header />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/shop" element={<ShopPage />} />
-            <Route path="/shop/:product_id" element={<ProductPage />} />
-            <Route path="/ingredients" element={<IngredientsPage />} />
-            <Route path="/orders" element={<OrderPage />} />
-            <Route path="/contact" element={<ContactPage/>} />
-          </Routes>
-          <Footer />
-          <LoginModal />
-          <RegisterModal />
-          <CartModal />
-          <CheckoutModal />
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/shop" element={<ShopPage />} />
+          <Route path="/shop/:product_id" element={<ProductPage />} />
+          <Route path="/ingredients" element={<IngredientsPage />} />
+          <Route path="/press" element={<PressPage />} />
+          <Route path="/orders" element={<OrderPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
+        <Footer />
+        <LoginModal />
+        <RegisterModal />
+        <CartModal />
+        <CheckoutModal />
       </div>
     </div>
   );
