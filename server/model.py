@@ -15,7 +15,6 @@ class Product(db.Model):
     image_url = db.Column(db.String(255))
     ingredients = db.relationship("ProductIngredient", backref="product")
     order_products = db.relationship('OrderProduct', backref='product')
- 
     def to_dict(self):
         print(self.ingredients)
         return {
