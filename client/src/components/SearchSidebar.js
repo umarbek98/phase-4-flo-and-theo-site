@@ -4,10 +4,24 @@ import styles from "./SearchSidebar.module.css";
 
 const SearchSideBar = () => {
   const [showFilters, setShowFilters] = useState(false);
+  const [ searchSelections, setSearchSelections ] = useState({
+    face: false,
+    soap: false,
+    butters: false,
+    polishes: false,
+    oils: false,
+    men: false
+  })
 
   const handleFilterClick = () => {
     setShowFilters(!showFilters);
   };
+
+  const handleSelectionChange = (e) => {
+    const { name , checked } = e.target
+    setSearchSelections({...searchSelections, [name]:checked})
+    console.log(searchSelections)
+  }
 
   return (
     <div className={styles.searchSidebarContainer}>
@@ -20,12 +34,12 @@ const SearchSideBar = () => {
       </div>
       {showFilters && (
         <div className={styles.checkBoxContainer}>
-          <Form.Check type="checkbox" label="Face" size="sm" />
-          <Form.Check type="checkbox" label="Soap" />
-          <Form.Check type="checkbox" label="Body Butters" />
-          <Form.Check type="checkbox" label="Body Polishes" />
-          <Form.Check type="checkbox" label="Body Oils" />
-          <Form.Check type="checkbox" label="Men" />
+          <Form.Check onChange={handleSelectionChange} type="checkbox" name="face" label="Face" size="sm" />
+          <Form.Check onChange={handleSelectionChange} type="checkbox" name="soap" label="Soap" />
+          <Form.Check onChange={handleSelectionChange} type="checkbox" name="butters" label="Body Butters" />
+          <Form.Check onChange={handleSelectionChange} type="checkbox" name="polishes" label="Body Polishes" />
+          <Form.Check onChange={handleSelectionChange} type="checkbox" name="oils" label="Body Oils" />
+          <Form.Check onChange={handleSelectionChange} type="checkbox" name="men" label="Men" />
         </div>
       )}
     </div>
