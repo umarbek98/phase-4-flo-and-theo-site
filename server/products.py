@@ -34,6 +34,8 @@ with app.app_context():
     description= 'Rich, aromatic, vegan and 100% natural, Wild Mint Body Butter has a lot of moisturizing power. The blend of Cocoa Butter, Shea Butter and Coconut Oil, means that this mixture is bursting with vitamins, minerals and antioxidants.',
     directions ='melt on your skin', image_url = 'https://images.squarespace-cdn.com/content/v1/52594417e4b030e5f06cf43c/1383064362956-D3OMUI518AMPH39H9EV5/Mint_butter_3.png?format=1000w', price=28)
 
+    
+
 
     products = [product1, product2, product3, product4,product5,product6, product6, product7, product8, product9, product10]
 
