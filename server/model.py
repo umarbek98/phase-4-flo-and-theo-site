@@ -1,8 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
 import bcrypt
- 
+
 db = SQLAlchemy()
- 
+
+
 class Product(db.Model):
     __tablename__ = 'products'
     product_id = db.Column(db.Integer, primary_key=True)
@@ -15,7 +16,7 @@ class Product(db.Model):
     image_url = db.Column(db.String(255))
     ingredients = db.relationship("ProductIngredient", backref="product")
     order_products = db.relationship('OrderProduct', backref='product')
- 
+
     def to_dict(self):
         print(self.ingredients)
         return {
@@ -29,7 +30,8 @@ class Product(db.Model):
             "ingredients": [ingredient.to_dict() for ingredient in self.ingredients]
             # 'order_items': [order_item.to_dict() for order_item in self.order_items]
         }
-    
+
+
 class Ingredient(db.Model):
     __tablename__ = "ingredients"
     ingredient_id = db.Column(db.Integer, primary_key=True)
@@ -46,14 +48,17 @@ class Ingredient(db.Model):
             "ingredient_image": self.ingredient_image,
         }
 
+
 class ProductIngredient(db.Model):
     __tablename__ = "product_ingredients"
-    id = db.Column(db.Integer,primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     product_id = db.Column(db.Integer, db.ForeignKey("products.product_id"))
-    ingredient_id = db.Column(db.Integer, db.ForeignKey("ingredients.ingredient_id"))
+    ingredient_id = db.Column(
+        db.Integer, db.ForeignKey("ingredients.ingredient_id"))
 
     def to_dict(self):
-        ingredient = Ingredient.query.filter(Ingredient.ingredient_id == self.ingredient_id).first()
+        ingredient = Ingredient.query.filter(
+            Ingredient.ingredient_id == self.ingredient_id).first()
         return {
             "ingredient_id": self.ingredient_id,
             "ingredient_name": ingredient.ingredient_name,
@@ -61,9 +66,7 @@ class ProductIngredient(db.Model):
             "ingredient_image": ingredient.ingredient_image
         }
 
-    
-        
- 
+
 class Customer(db.Model):
     __tablename__ = 'customers'
     customer_id = db.Column(db.Integer, primary_key=True)
@@ -84,7 +87,8 @@ class Customer(db.Model):
 
     @password.setter
     def password(self, password):
-        self.password_hash = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+        self.password_hash = bcrypt.hashpw(password.encode(
+            'utf-8'), bcrypt.gensalt()).decode('utf-8')
 
     def verify_password(self, password):
         return bcrypt.checkpw(password.encode('utf-8'), self.password_hash.encode('utf-8'))
@@ -102,7 +106,8 @@ class Customer(db.Model):
             # 'phone_number': self.phone_number,
             'orders': [order.to_dict() for order in self.orders]
         }
- 
+
+
 class Order(db.Model):
     __tablename__ = 'orders'
     order_id = db.Column(db.Integer, primary_key=True)
@@ -113,7 +118,7 @@ class Order(db.Model):
     # total_amount = db.Column(db.Float)
     status = db.Column(db.String(255))
     order_products = db.relationship('OrderProduct', backref='order')
- 
+
     def to_dict(self):
         return {
             'order_id': self.order_id,
@@ -125,7 +130,8 @@ class Order(db.Model):
             'status': self.status,
             'order_products': [order_product.to_dict() for order_product in self.order_products]
         }
- 
+
+
 class OrderProduct(db.Model):
     __tablename__ = 'order_products'
     id = db.Column(db.Integer, primary_key=True)
@@ -133,9 +139,10 @@ class OrderProduct(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey('products.product_id'))
     quantity = db.Column(db.Integer)
     unit_price = db.Column(db.Float)
- 
+
     def to_dict(self):
-        product = Product.query.filter(Product.product_id == self.product_id).first()
+        product = Product.query.filter(
+            Product.product_id == self.product_id).first()
         return {
             # 'order_item_id': self.order_item_id,
             'product_id': self.product_id,
@@ -143,7 +150,3 @@ class OrderProduct(db.Model):
             'unit_price': self.unit_price,
             'product': product.to_dict()
         }
-
-
-
-    

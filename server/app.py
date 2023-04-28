@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, make_response,json
+from flask import Flask, jsonify, request, make_response, json
 from flask_sqlalchemy import SQLAlchemy
 import bcrypt
 from model import db, Product, Customer, Order, OrderProduct
@@ -11,10 +11,12 @@ db.init_app(app)
 
 migrate = Migrate(app, db)
 
+
 @app.route('/products')
 def get_products():
     products = Product.query.all()
     return jsonify([product.to_dict() for product in products])
+
 
 @app.route('/products/<int:product_id>')
 def get_product(product_id):
@@ -23,6 +25,7 @@ def get_product(product_id):
         return jsonify(product.to_dict())
     else:
         return jsonify({'error': 'Product not found'}), 404
+
 
 @app.route('/products', methods=['POST'])
 def create_product():
@@ -40,6 +43,7 @@ def create_product():
     db.session.commit()
     return jsonify(product.to_dict()), 201
 
+
 @app.route('/products/<int:product_id>', methods=['PATCH'])
 def update_product(product_id):
     product = Product.query.get(product_id)
@@ -55,6 +59,7 @@ def update_product(product_id):
     db.session.commit()
     return jsonify(product.to_dict())
 
+
 @app.route('/products/<int:product_id>', methods=['DELETE'])
 def delete_product(product_id):
     product = Product.query.get(product_id)
@@ -64,10 +69,12 @@ def delete_product(product_id):
     db.session.commit()
     return make_response(jsonify({}), 204)
 
+
 @app.route('/customers')
 def get_customers():
     customers = Customer.query.all()
     return jsonify([customer.to_dict() for customer in customers])
+
 
 @app.route('/customers/<int:customer_id>')
 def get_customer(customer_id):
@@ -76,6 +83,7 @@ def get_customer(customer_id):
         return jsonify(customer.to_dict())
     else:
         return jsonify({'error': 'Customer not found'}), 404
+
 
 @app.route('/customers', methods=['POST'])
 def create_customer():
@@ -94,6 +102,7 @@ def create_customer():
     db.session.add(customer)
     db.session.commit()
     return jsonify(customer.to_dict()), 201
+
 
 @app.route('/customers/<int:customer_id>', methods=['PATCH'])
 def update_customer(customer_id):
@@ -114,6 +123,7 @@ def update_customer(customer_id):
     db.session.commit()
     return jsonify(customer.to_dict())
 
+
 @app.route('/customers/<int:customer_id>', methods=['DELETE'])
 def delete_customer(customer_id):
     customer = Customer.query.get(customer_id)
@@ -123,10 +133,12 @@ def delete_customer(customer_id):
     db.session.commit()
     return '', 204
 
+
 @app.route('/orders')
 def get_orders():
     orders = Order.query.all()
     return jsonify([order.to_dict() for order in orders])
+
 
 @app.route('/orders/<int:order_id>')
 def get_order(order_id):
@@ -136,6 +148,7 @@ def get_order(order_id):
     else:
         return jsonify({'error': 'Order not found'}), 404
 
+
 @app.route('/orders', methods=['POST'])
 def create_order():
     data = request.get_json()
@@ -144,10 +157,10 @@ def create_order():
     if not customer:
         return jsonify({'error': 'Customer not found'}), 404
     order = Order(
-    customer_id=customer_id,
-    order_date=data['order_date'],
-    total_amount=data['total_amount'],
-    status=data['status']
+        customer_id=customer_id,
+        order_date=data['order_date'],
+        total_amount=data['total_amount'],
+        status=data['status']
     )
     for item_data in data['order_items']:
         product_id = item_data['product_id']
@@ -155,14 +168,15 @@ def create_order():
         if not product:
             return jsonify({'error': 'Product not found'}), 404
     order_item = OrderProduct(
-    product_id=product_id,
-    quantity=item_data['quantity'],
-    price=product.price
+        product_id=product_id,
+        quantity=item_data['quantity'],
+        price=product.price
     )
     order.order_items.append(order_item)
     db.session.add(order)
     db.session.commit()
     return jsonify(order.to_dict()), 201
+
 
 @app.route('/orders/', methods=['PATCH'])
 def update_order(order_id):
@@ -181,13 +195,14 @@ def update_order(order_id):
         if not product:
             return jsonify({'error': 'Product not found'}), 404
     order_item = OrderProduct(
-    product_id=product_id,
-    quantity=item_data['quantity'],
-    price=product.price
+        product_id=product_id,
+        quantity=item_data['quantity'],
+        price=product.price
     )
     order.order_items.append(order_item)
     db.session.commit()
     return jsonify(order.to_dict())
+
 
 @app.route('/orders/<int:order_id>', methods=['DELETE'])
 def delete_order(order_id):
@@ -199,15 +214,17 @@ def delete_order(order_id):
     return '', 204
 
 # Orders for Specific Customer
+
+
 @app.route("/orders/bycustomer/<int:customer_id>")
 def get_orders_by_customer(customer_id):
-    orders = [] 
+    orders = []
     for order in Order.query.filter(Order.customer_id == customer_id).all():
         orders.append(order.to_dict())
     if len(orders) > 0:
-        return make_response(jsonify(orders),200)
+        return make_response(jsonify(orders), 200)
     else:
-        return make_response({"error":"No orders found"},404)
+        return make_response({"error": "No orders found"}, 404)
 
 
 @app.route('/login', methods=['POST'])
@@ -216,13 +233,14 @@ def login():
     print(email)
     password = request.json.get('password')
 
-    customer = Customer.query.filter(Customer.email==email).first()
+    customer = Customer.query.filter(Customer.email == email).first()
     print(customer)
     if not customer or not customer.verify_password(password):
         return jsonify(None), 401
 
     # Login successful, return customer data
     return jsonify(customer.to_dict())
+
 
 if "__name__" == '__main__':
     app.run(debug=True)

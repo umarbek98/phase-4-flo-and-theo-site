@@ -16,14 +16,15 @@ if __name__ == '__main__':
         ProductIngredient.query.delete()
 
         db.session.commit()
-        
+
         # Create some products
         products = []
         for i in range(10):
             product = Product(
                 product_name=fake.word(),
                 category=fake.word(),
-                price=fake.pydecimal(left_digits=2, right_digits=2, positive=True),
+                price=fake.pydecimal(
+                    left_digits=2, right_digits=2, positive=True),
                 description=fake.sentence(),
                 image_url=fake.image_url(),
                 directions=fake.sentence()
@@ -46,12 +47,12 @@ if __name__ == '__main__':
 
         # Add random ingredients to product
         for product in Product.query.all():
-            number_to_add = random.randint(2,5)
+            number_to_add = random.randint(2, 5)
             for i in range(number_to_add):
                 random_ingredient = random.choice(Ingredient.query.all())
                 product_ingredient = ProductIngredient(
-                    product_id = product.product_id,
-                    ingredient_id = random_ingredient.ingredient_id
+                    product_id=product.product_id,
+                    ingredient_id=random_ingredient.ingredient_id
                 )
                 db.session.add(product_ingredient)
                 db.session.commit()
@@ -83,7 +84,8 @@ if __name__ == '__main__':
                 order_date=fake.date_this_year(),
                 order_address=fake.address(),
                 # total_amount=fake.pydecimal(left_digits=3, right_digits=2, positive=True),
-                status=fake.random_element(elements=('Pending', 'Shipped', 'Delivered'))
+                status=fake.random_element(
+                    elements=('Pending', 'Shipped', 'Delivered'))
             )
             orders.append(order)
         db.session.add_all(orders)
